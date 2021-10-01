@@ -14,6 +14,7 @@ Copy the script to the router with :
 smog@maryjane:~$ scp configure_router_bielefeld.sh root@router_ip:/root/
 ```
 Where **router_ip** is the ip of the router that you want to configure.
+And type **yes** to register the ssh key if asked and after insert the password that you choosed when you logged the first time in the gateway.
 
 ### Connect to the router
 
@@ -23,7 +24,7 @@ Connect with ssh to the router with:
 smog@maryjane:~$ ssh root@router_ip
 ```
 
-And type **yes** to register the ssh key and after insert the password that you choosed when loggen the first time in the gateway.
+And type **yes** to register the ssh key if asked and after insert the password that you choosed when you logged the first time in the gateway.
 
 ### Launch the script
 
