@@ -188,6 +188,6 @@ echo "Starting & Enabling cron service"
 ###############
 # Starting wpa
 
-/script/restart_wpa.sh
-
+#/script/restart_wpa.sh
+echo "connect cable to router and lanuch /script/restart_wpa.sh to start connection"
 ###############
