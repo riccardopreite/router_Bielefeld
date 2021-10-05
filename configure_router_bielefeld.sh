@@ -51,7 +51,7 @@ RESTART_WPA="#!/bin/sh\n
 killall wpa_supplicant\n
 wpa_supplicant -D wired -i eth0 -B -c "$WPA_PATH
 RESTART_WPA_DIR="/script/"
-RESTART_WPA_NAME="restart_wpa .sh"
+RESTART_WPA_NAME="restart_wpa.sh"
 RESTART_WPA_PATH="$RESTART_WPA_DIR$RESTART_WPA_NAME"
 
 RC="/etc/rc.local"
@@ -65,12 +65,15 @@ RC="/etc/rc.local"
 
 echo "Creating working dir.."
 
+rm -r $WPA_DIR
 mkdir $WPA_DIR
 echo "Created $WPA_DIR"
 
+rm -r $CERT_DIR
 mkdir $CERT_DIR
 echo "Created $CERT_DIR"
 
+rm -r $RESTART_WPA_DIR
 mkdir $RESTART_WPA_DIR
 echo "Created $RESTART_WPA_DIR"
 ###############
@@ -79,19 +82,19 @@ echo "Created $RESTART_WPA_DIR"
 # T-TeleSec_GlobalRoot_Class_2 CERT FILE
 echo "Creating Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT).."
 
-if [ ! -e $CERT_PATH ]; then
-    echo -e $CERT > $CERT_PATH
-  else
-    echo "Deliting $CERT_NAME to recreate it"
-    rm $CERT_PATH
-    echo -e $CERT > $CERT_PATH
-  fi
-echo "Created file $CERT_NAME"
+#if [ ! -e $CERT_PATH ]; then
+#    echo -e $CERT > $CERT_PATH
+#  else
+#    echo "Deliting $CERT_NAME to recreate it"
+#    rm $CERT_PATH
+#    echo -e $CERT > $CERT_PATH
+#  fi
+#echo "Created file $CERT_NAME"
 
-# echo "Downloading Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT).."
-# wget $CERT_URL
-# echo "Downloaded file $CERT_NAME"
-# mv $CERT_NAME $CERT_DIR
+echo "Downloading Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT).."
+wget $CERT_URL
+echo "Downloaded file $CERT_NAME"
+mv $CERT_NAME $CERT_DIR
 cat $CERT_PATH
 
 chmod 444 $CERT_PATH
