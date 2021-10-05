@@ -95,7 +95,7 @@ echo "Downloading Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT)..
 wget $CERT_URL
 echo "Downloaded file $CERT_NAME"
 echo "moving certificate"
-mv "router_Bielefeld-main/$CERT_NAME $CERT_DIR
+mv $CERT_NAME $CERT_DIR
 cat $CERT_PATH
 
 chmod 444 $CERT_PATH
