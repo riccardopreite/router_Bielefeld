@@ -188,6 +188,6 @@ echo "Starting & Enabling cron service"
 ###############
 # Starting wpa
 
-wpa_supplicant -D wired -i eth0 -B -c $WPA_PATH
+/script/restart_wpa.sh
 
 ###############
