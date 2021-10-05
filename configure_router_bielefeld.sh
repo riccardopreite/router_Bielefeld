@@ -91,10 +91,11 @@ echo "Creating Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT).."
 #  fi
 #echo "Created file $CERT_NAME"
 
-echo "Downloading Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT).."
-wget $CERT_URL
-echo "Downloaded file $CERT_NAME"
-mv $CERT_NAME $CERT_DIR
+#echo "Downloading Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT).."
+#wget $CERT_URL
+#echo "Downloaded file $CERT_NAME"
+echo "moving certificate"
+mv "router_Bielefeld-main/$CERT_NAME $CERT_DIR
 cat $CERT_PATH
 
 chmod 444 $CERT_PATH
