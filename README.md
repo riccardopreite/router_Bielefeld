@@ -36,8 +36,12 @@ And type **yes** to register the ssh key if asked and after insert the password 
 
 ### Launch the script
 
-First make the script executable with:
 
+First make mv the script to root and make it executable with:
+
+```console
+root@modem_name:~$ mv router_Bielefeld-main/configure_router_bielefeld.sh ./
+```
 ```console
 root@modem_name:~$ chmod +x configure_router_bielefeld.sh
 ```
