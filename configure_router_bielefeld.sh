@@ -147,7 +147,7 @@ chmod 700 $RESTART_WPA_PATH
 # Insert email  & Password SECTION
 
 echo "Please insert your credential to modify the $WPA_NAME file to authenticate to network."
-echo "Insert your email (nsurname@uni-bielfeld.de)"
+echo "Insert your email nsurname@uni-bielfeld.de"
 read -p 'Email: ' email
 
 echo "Insert your Password"
