@@ -116,11 +116,7 @@ else
   rm $WPA_PATH
   echo -e $WPA_CONF > $WPA_PATH
 fi
-
 echo "Created file $WPA_NAME"
-chmod 400 $WPA_PATH
-echo "$WPA_NAME Now is only in read mode for root"
-
 ###############
 
 
@@ -159,6 +155,8 @@ sed -i "s/PASSWORD_DI_BIELEFELD/$password/" $WPA_PATH
 echo "NEW FILE IS:"
 cat $WPA_PATH
 
+chmod 400 $WPA_PATH
+echo "$WPA_NAME Now is only in read mode for root"
 ###############
 # rc.local section
 echo "Editing rc.local and making it executable"
