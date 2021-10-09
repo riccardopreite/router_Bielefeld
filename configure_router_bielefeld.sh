@@ -30,7 +30,7 @@ CERT_DIR="/usr/cert/"
 CERT_NAME="T-TeleSec_GlobalRoot_Class_2.pem"
 CERT_PATH="$CERT_DIR$CERT_NAME"
 
-WPA_CONF="# wpa_supplicant mit EAP-PEAP ##################################\n
+WPA_CONF_UNI="# wpa_supplicant mit EAP-PEAP ##################################\n
 ctrl_interface=/var/run/wpa_supplicant\n
 ap_scan=0\n
 network={\n
@@ -43,6 +43,23 @@ network={\n
         phase2="'"auth=MSCHAPV2"'"\n
         priority=10\n
 }"
+
+WPA_CONF = $WPA_CONF_UNI
+
+WPA_CONF_FH="# wpa_supplicant mit EAP-PEAP ##################################\n
+ctrl_interface=/var/run/wpa_supplicant\n
+ap_scan=0\n
+network={\n
+        key_mgmt=WPA-EAP\n
+        eap=PEAP\n
+        anonymous_identity="'"EMAIL_DI_BIELEFELD"'"\n
+        identity="'"EMAIL_DI_BIELEFELD"'"\n
+        password="'"PASSWORD_DI_BIELEFELD"'"\n
+        ca_cert="'"'$CERT_PATH'"'"\n
+        phase2="'"auth=MSCHAPV2"'"\n
+        priority=10\n
+}"
+
 WPA_DIR="/etc/wpasupplicant/"
 WPA_NAME="wpasupplicant.conf"
 WPA_PATH="$WPA_DIR$WPA_NAME"
@@ -109,6 +126,30 @@ echo "$CERT_NAME Now is only in read mode"
 # WPA CONF FILE
 echo "Creating WPA_CONF file"
 
+while true; do
+  read -p "Are you uni or fh student? [Default uni]: " student
+    student=${student:-uni}
+    case $student in
+        [uni]*)
+            echo "You choosed "$student
+            echo 'Continuing'
+            break
+            ;;
+        [fh]*)
+            echo "You choosed "$student
+            echo 'Continuing'
+            break
+            ;;
+         *)
+            echo 'Choose uni or fh'
+    esac
+done
+
+if [student == "uni"]; then 
+  $WPA_CONF = $WPA_CONF_UNI
+else
+  $WPA_CONF = $WPA_CONF_FH
+
 if [ ! -e $WPA_PATH ]; then
   echo -e $WPA_CONF > $WPA_PATH
 else
@@ -143,9 +184,10 @@ chmod 700 $RESTART_WPA_PATH
 # Insert email  & Password SECTION
 
 echo "Please insert your credential to modify the $WPA_NAME file to authenticate to network."
-echo "Insert your email nsurname@uni-bielfeld.de"
+echo "Insert your email (n.surname)"
 read -p 'Email: ' email
-
+$email=$email"@"$student"-bielfeld.de
+echo "your email "$email
 echo "Insert your Password"
 read -sp 'Password: ' password
 
