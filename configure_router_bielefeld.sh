@@ -44,7 +44,7 @@ network={\n
         priority=10\n
 }"
 
-WPA_CONF = $WPA_CONF_UNI
+WPA_CONF=$WPA_CONF_UNI
 
 WPA_CONF_FH="# wpa_supplicant mit EAP-PEAP ##################################\n
 ctrl_interface=/var/run/wpa_supplicant\n
@@ -113,7 +113,7 @@ wget $CERT_URL
 echo "Downloaded file $CERT_NAME"
 echo "moving certificate"
 mv $CERT_NAME $CERT_DIR
-cat $CERT_PATH
+#cat $CERT_PATH
 
 chmod 444 $CERT_PATH
 echo "$CERT_NAME Now is only in read mode"
@@ -145,10 +145,11 @@ while true; do
     esac
 done
 
-if [student == "uni"]; then 
-  $WPA_CONF = $WPA_CONF_UNI
+if [ "$student" = "uni" ]; then
+  WPA_CONF=$WPA_CONF_UNI
 else
-  $WPA_CONF = $WPA_CONF_FH
+  WPA_CONF=$WPA_CONF_FH
+fi
 
 if [ ! -e $WPA_PATH ]; then
   echo -e $WPA_CONF > $WPA_PATH
@@ -186,8 +187,11 @@ chmod 700 $RESTART_WPA_PATH
 echo "Please insert your credential to modify the $WPA_NAME file to authenticate to network."
 echo "Insert your email (n.surname)"
 read -p 'Email: ' email
-$email=$email"@"$student"-bielefeld.de"
+
+email=$email"@"$student"-bielefeld.de"
 echo "your email "$email
+
+
 echo "Insert your Password"
 read -sp 'Password: ' password
 
