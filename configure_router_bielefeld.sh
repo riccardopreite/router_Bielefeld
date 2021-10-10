@@ -133,11 +133,13 @@ while true; do
         [uni]*)
             echo "You choosed "$student
             echo 'Continuing'
+            WPA_CONF=$WPA_CONF_UNI
             break
             ;;
         [fh]*)
             echo "You choosed "$student
             echo 'Continuing'
+            WPA_CONF=$WPA_CONF_FH
             break
             ;;
          *)
@@ -145,11 +147,6 @@ while true; do
     esac
 done
 
-if [ "$student" = "uni" ]; then
-  WPA_CONF=$WPA_CONF_UNI
-else
-  WPA_CONF=$WPA_CONF_FH
-fi
 
 if [ ! -e $WPA_PATH ]; then
   echo -e $WPA_CONF > $WPA_PATH
