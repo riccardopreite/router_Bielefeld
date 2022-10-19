@@ -99,20 +99,20 @@ echo "Created $RESTART_WPA_DIR"
 # T-TeleSec_GlobalRoot_Class_2 CERT FILE
 echo "Creating Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT).."
 
-#if [ ! -e $CERT_PATH ]; then
-#    echo -e $CERT > $CERT_PATH
-#  else
-#    echo "Deliting $CERT_NAME to recreate it"
-#    rm $CERT_PATH
-#    echo -e $CERT > $CERT_PATH
-#  fi
-#echo "Created file $CERT_NAME"
+if [ ! -e $CERT_PATH ]; then
+    echo -e $CERT > $CERT_PATH
+  else
+    echo "Deliting $CERT_NAME to recreate it"
+    rm $CERT_PATH
+    echo -e $CERT > $CERT_PATH
+  fi
+echo "Created file $CERT_NAME"
 
-echo "Downloading Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT).."
-wget $CERT_URL
-echo "Downloaded file $CERT_NAME"
-echo "moving certificate"
-mv $CERT_NAME $CERT_DIR
+#echo "Downloading Certificate file (Valid until 1. Oktober 2033, 23:59:59 GMT).."
+#wget $CERT_URL
+#echo "Downloaded file $CERT_NAME"
+#echo "moving certificate"
+#mv $CERT_NAME $CERT_DIR
 #cat $CERT_PATH
 
 chmod 444 $CERT_PATH
